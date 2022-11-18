@@ -1,4 +1,4 @@
-# mobile-number-login
+# Mobile Number Login Magento2 Module
 mobile number login magento2 module
 ___
 ![Screenshot (15)](https://user-images.githubusercontent.com/39663362/202660932-018d4144-7917-4c1b-babe-150ff77077ba.png)
