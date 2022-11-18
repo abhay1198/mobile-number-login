@@ -9,19 +9,28 @@
  * @author    Abhay Agrawal <abhay@gmail.com>
  * @copyright 2022 Copyright © Abhay
  * @license   See COPYING.txt for license details.
- * @link      https://github.com/abhay1198/
+ * @link      https://github.com/abhay1198/mobile-number-login
  */
 namespace Abhay\MobileNumberLogin\Controller\Account;
 
 use Magento\Customer\Model\CustomerFactory;
 
+/**
+ * Check Mobile Number exist or not
+ */
 class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
 {
+    /**
+     * Execute Method
+     * 
+     * @return execute()
+     */
     public function execute()
     {
         $resultRedirect = $this->resultRedirectFactory->create();
         $mobile = $this->getRequest()->getParam('mobile_number');
-        $collection = $this->getCustomer()->getCollection()->addAttributeToFilter('mobile_number', $mobile);
+        $collection = $this->_getCustomer()->getCollection()
+            ->addAttributeToFilter('mobile_number', $mobile);
         $flag = 0;
         foreach ($collection as $customer) {
             if ($customer->getEmail()) {
@@ -39,8 +48,12 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
         }
         return parent::execute();
     }
-
-    private function getCustomer()
+    /**
+     * Get Customer Details
+     * 
+     * @return customerData
+     */
+    private function _getCustomer()
     {
         return \Magento\Framework\App\ObjectManager::getInstance()->get(
             \Magento\Customer\Model\Customer::class

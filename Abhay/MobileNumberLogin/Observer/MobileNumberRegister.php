@@ -11,6 +11,7 @@
  * @license   See COPYING.txt for license details.
  * @link      https://github.com/abhay1198/mobile-number-login
  */
+
 namespace Abhay\MobileNumberLogin\Observer;
 
 use Magento\Framework\Event\ObserverInterface;
@@ -33,8 +34,7 @@ class MobileNumberRegister implements ObserverInterface
         $request = $accountController->getRequest();
         $customer_register_number = $request->getParam('mobile_number');
 
-        if ($customer_register_number && $customer_register_number != '') 
-        {
+        if ($customer_register_number && $customer_register_number != '') {
             $customer->setCustomAttribute('mobile_number', $customer_register_number);
             $this->customerRepository->save($customer);
         }

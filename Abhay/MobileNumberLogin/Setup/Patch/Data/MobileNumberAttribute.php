@@ -11,6 +11,7 @@
  * @license   See COPYING.txt for license details.
  * @link      https://github.com/abhay1198/mobile-number-login
  */
+
 namespace Abhay\MobileNumberLogin\Setup\Patch\Data;
 
 use Magento\Framework\Setup\Patch\DataPatchInterface;
@@ -24,8 +25,8 @@ use Magento\Customer\Model\Customer;
 class MobileNumberAttribute implements DataPatchInterface
 {
      /**
-     * @var ModuleDataSetupInterface $moduleDataSetup
-     */
+      * @var ModuleDataSetupInterface $moduleDataSetup
+      */
     private $moduleDataSetup;
 
     /**
@@ -67,7 +68,8 @@ class MobileNumberAttribute implements DataPatchInterface
         $attributeGroupId = $attributeSet->getDefaultGroupId($attributeSetId);
 
         $frontendClass = '';
-        $customerSetup->addAttribute(Customer::ENTITY, 'mobile_number', [
+        $customerSetup->addAttribute(
+            Customer::ENTITY, 'mobile_number', [
             'type' => 'varchar',
             'label' => __(' Mobile Number'),
             'frontend_class' => 'validate-digits,validate-number',
@@ -83,14 +85,17 @@ class MobileNumberAttribute implements DataPatchInterface
             'is_visible_in_grid' => 1,
             'is_filterable_in_grid' => 1,
             'is_searchable_in_grid' => 1,
-        ]);
+            ]
+        );
 
         $attribute = $customerSetup->getEavConfig()->getAttribute(Customer::ENTITY, 'mobile_number')
-        ->addData([
-            'attribute_set_id' => $attributeSetId,
-            'attribute_group_id' => $attributeGroupId,
-            'used_in_forms' => [],
-        ]);
+            ->addData(
+                [
+                'attribute_set_id' => $attributeSetId,
+                'attribute_group_id' => $attributeGroupId,
+                'used_in_forms' => [],
+                ]
+            );
 
         $attribute->save();
     }

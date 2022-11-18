@@ -13,6 +13,9 @@
  */
 
 /** @var \Magento\Customer\Block\Account\Dashboard\Info $block */
+
+$helper = $this->helper('Abhay\MobileNumberLogin\Helper\Data');
+
 ?>
 <div class="block block-dashboard-info">
     <div class="block-title"><strong><?= $block->escapeHtml(__('Account Information')) ?></strong></div>
@@ -27,7 +30,7 @@
                     <?= $block->escapeHtml($block->getCustomer()->getEmail()) ?><br>
                     <?php
                     $mobileNumber = $block->getCustomer()->getCustomAttribute('mobile_number');
-                    if ($mobileNumber && $mobileNumber->getValue()) {
+                    if ($helper->isEnabled() && $mobileNumber && $mobileNumber->getValue()) {
                         echo $block->escapeHtml($mobileNumber->getValue());
                     }
                     ?><br>

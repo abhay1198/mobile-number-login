@@ -17,4 +17,7 @@
     <event name="customer_register_success">
         <observer name="save_mobile_number_at_registration_time" instance="Abhay\MobileNumberLogin\Observer\MobileNumberRegister"/>
     </event>
+    <event name="controller_action_predispatch_customer_account_loginPost">
+        <observer name="mobile_number_login" instance="Abhay\MobileNumberLogin\Observer\MobileNumberLogin" shared="false"/>
+    </event>
 </config>
